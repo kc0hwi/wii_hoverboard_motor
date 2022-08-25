@@ -65,27 +65,27 @@ void loop() {
     // Engage the brakes
     setBrakes();
   }
-  else if (xMap < 0 && yMap > 0) { 
+  else if (xMap < lowerDeadZone  && yMap > upperDeadZone ) { 
     leftSpeed = yMap + xMap;
     rightSpeed = yMap;
   }
-  else if (xMap > 0 && yMap > 0) {
+  else if (xMap > upperDeadZone  && yMap > upperDeadZone ) {
     leftSpeed = yMap;
     rightSpeed = yMap - xMap; 
   }
-  else if (xMap < 0 && yMap < 0) { // reverse and swinging left
+  else if (xMap < lowerDeadZone  && yMap < lowerDeadZone) { // reverse and swinging left
     leftSpeed =  yMap - xMap;
     rightSpeed = yMap;
   } 
-  else if (xMap > 0 && yMap < 0) { // reverse and swinging right
+  else if (xMap > upperDeadZone && yMap < lowerDeadZone) { // reverse and swinging right
     leftSpeed = yMap; 
     rightSpeed = yMap + xMap; 
   } 
-  else if (xMap < 0 && yMap == 0) {
+  else if (xMap < lowerDeadZone && yMap > lowerDeadZone && yMap < upperDeadZone) {
     leftSpeed = yMap;
     rightSpeed = -xMap; // spin left in place
   } 
-  else if (xMap > 0 && yMap == 0) {
+  else if (xMap > upperDeadZone && yMap > lowerDeadZone && yMap < upperDeadZone) {
     leftSpeed = xMap; // spin right in place
     rightSpeed = yMap;
   } 
@@ -138,5 +138,3 @@ void setBrakes() {
   digitalWrite(L_BRAKE_PIN, !leftBrake);
   digitalWrite(R_BRAKE_PIN, !rightBrake);
 }
-
-
