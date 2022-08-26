@@ -106,7 +106,8 @@ void loop() {
 //  Serial.print("Button: "); 
 //  if (nunchuck.getButtonZ()) Serial.print(" Z "); 
 //  if (nunchuck.getButtonC()) Serial.print(" C "); 
-
+  setLeftMotor(leftSpeed);
+  setRightMotor(rightSpeed);
 //  Serial.println();
   delay(50);
 }
